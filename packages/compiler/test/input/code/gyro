@@ -1,0 +1,4 @@
+int: x = 5;
+{[key: string]}: y = x / 2;
+
+func compile(int x1, int x2)

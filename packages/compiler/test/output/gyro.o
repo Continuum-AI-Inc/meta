@@ -1,0 +1,255 @@
+       ADR  PROGRAM
+PROGRAM
+A0 
+       JMP  ASSIGNMENT
+       BF  A1 
+A1 
+       BT  A2 
+       JMP  FUNCTION
+       BF  A3 
+A3 
+A2 
+       BT  A0 
+       SET 
+       BF  A4 
+A4 
+A5 
+       R 
+ASSIGNMENT
+       JMP  TYPED_DECLARATION
+       BF  A6 
+A6 
+       BT  A7 
+       JMP  UNTYPED_DECLARATION
+       BF  A8 
+A8 
+A7 
+       BF  A9 
+A10 
+       TST  "="
+       BT  A10 
+       SET 
+       BE 
+       JMP  EXP
+       BE 
+       CL  "STO"
+       OUT 
+       TST  ";"
+       BE 
+A9 
+A11 
+       R 
+FUNCTION
+       TST  "func"
+       BF  A12 
+A13 
+       ID 
+       BT  A13 
+       SET 
+       BE 
+       LB 
+       CL  "("
+       OUT 
+       JMP  ARGUMENT_LIST
+       BE 
+       TST  ")"
+       BE 
+A12 
+A14 
+       R 
+ARGUMENT_LIST
+       JMP  ARGUMENT
+       BF  A15 
+A16 
+       TST  ","
+       BF  A17 
+A17 
+       BT  A18 
+       TST  ""
+       BF  A19 
+A19 
+A18 
+       BT  A16 
+       SET 
+       BE 
+A20 
+       JMP  ARGUMENT_LIST
+       BT  A20 
+       SET 
+       BE 
+A15 
+A21 
+       R 
+ARGUMENT
+       JMP  TYPE
+       BF  A22 
+       CL  "CVT"
+       GROUP 1
+       OUT 
+A23 
+       ID 
+       BT  A23 
+       SET 
+       BE 
+       CL  "PUSH"
+       CI 
+       OUT 
+A22 
+A24 
+       R 
+TYPE
+       REGEXP (\w+)
+       BF  A25 
+A25 
+A26 
+       R 
+EXP
+       JMP  EX2
+       BF  A27 
+A28 
+       TST  "+"
+       BF  A29 
+       JMP  EX2
+       BE 
+       CL  "ADD"
+       OUT 
+A29 
+       BT  A30 
+       TST  "-"
+       BF  A31 
+       JMP  EX2
+       BE 
+       CL  "SUB"
+       OUT 
+A31 
+A30 
+       BT  A28 
+       SET 
+       BE 
+A27 
+A32 
+       R 
+EX2
+       JMP  EX3
+       BF  A33 
+A34 
+       TST  "*"
+       BF  A35 
+       JMP  EX3
+       BE 
+       CL  "MUL"
+       OUT 
+A35 
+       BT  A36 
+       TST  "/"
+       BF  A37 
+       JMP  EX3
+       BE 
+       CL  "DIV"
+       OUT 
+A37 
+A36 
+       BT  A34 
+       SET 
+       BE 
+A33 
+A38 
+       R 
+EX3
+       JMP  EX4
+       BF  A39 
+A40 
+       TST  "**"
+       BF  A41 
+       JMP  EX3
+       BE 
+       CL  "POW"
+       OUT 
+A41 
+A42 
+       BT  A40 
+       SET 
+       BE 
+A39 
+A43 
+       R 
+EX4
+       TST  "+"
+       BF  A44 
+       JMP  EX5
+       BE 
+A44 
+       BT  A45 
+       TST  "-"
+       BF  A46 
+       JMP  EX5
+       BE 
+       CL  "NEG"
+       OUT 
+A46 
+       BT  A45 
+       JMP  EX5
+       BF  A47 
+A47 
+A45 
+       R 
+EX5
+       ID 
+       BF  A48 
+       CL  "LDN"
+       CI 
+       OUT 
+A48 
+       BT  A49 
+       NUM 
+       BF  A50 
+       CL  "LDC"
+       CI 
+       OUT 
+A50 
+       BT  A49 
+       TST  "("
+       BF  A51 
+       JMP  EX1
+       BE 
+       TST  ")"
+       BE 
+A51 
+A49 
+       R 
+TYPED_DECLARATION
+       REGEXP (.*)\s*:
+       BF  A52 
+       CL  "CVT"
+       GROUP 1
+       OUT 
+A53 
+       TST  ":"
+       BT  A53 
+       SET 
+       BE 
+A54 
+       ID 
+       BT  A54 
+       SET 
+       BE 
+       CL  "ADR"
+       CI 
+       OUT 
+A52 
+A55 
+       R 
+UNTYPED_DECLARATION
+       ID 
+       BF  A56 
+       CL  "CVT"
+       CL  "~"
+       OUT 
+       CL  "ADR"
+       CI 
+       OUT 
+A56 
+A57 
+       R 
+       END 
+       

@@ -1,0 +1,95 @@
+.SYNTAX PROGRAM
+
+[ Program Entry ]
+PROGRAM = ".SYNTAX" .ID -> ("ADR " *) $(DEFINITION | COMMENT) ".END" -> ("END");
+
+OUT1 = "*1"     	-> ("GN1")
+	| "*2"     	-> ("GN2")
+	| "*"      	-> ("CI")
+    | .STRING  	-> ("CL " *)
+
+	[ We can match multiple groups with RegExp so we need a tool for retrieving groups ]
+
+	| "#" .NUMBER 	-> ("GROUP" *);
+
+[ This section is responsible for parsing the output directive `->()`]
+[ Or to parse a `.LABEL` directive, which will dedent the output to create a new labeled section ]
+
+OUTPUT = ("->" $ "(" $ OUT1 ")" 
+		| ".LABEL" -> ("LB") OUT1) -> ("OUT");
+
+[ If we hit an identifier we jump to it using `JMP` - Call ]
+
+EX3 = .ID               -> ("JMP " *)
+
+	[ If we hit a supposed string we will start matching the string ]
+
+    | .STRING           -> ("TST " *)
+
+	[ Match the .ID directive, causing the compiler to match an identifier ]
+
+    | ".ID"             -> ("ID")
+
+	[ Match Everything until we hit a newline character (\n) ]
+	
+	| ".ROL"	-> ("ROL")
+
+	[ This is a command directive, it will take a parameter to not match against as a string ]
+	[ This will cause the compiler to break once it finds the specified string ]
+	[ ~ is a shorthand for `.NOT` ]
+
+	| (".NOT" | "~") .STRING	-> ("NOT" *)
+
+	[ This will match the ".NUMBER" directive, which will itself match any numbers ]
+
+    | ".NUMBER"         -> ("NUM")
+
+	[ This will match the ".STRING" directive, which will itself match a string ]
+	[ Strings can be single quoted ('String') or double quoted ("Also string") for ease of use ]
+
+    | ".STRING"         -> ("SR")
+
+	[ Externally provided flags can be read into memory using the .FLAG / .f directive ]
+	[ This can allow for checking whether debug mode is enabled or not and so much else ]
+
+	[ | (".f" | ".FLAG") $ "(" .STRING $ .ID -> ("MOV" #-1 #1) $ ")"; ]
+
+	[ This will match an expression inside parentheses, like in math, parens' will cause the expression to be favored ]
+
+    | "(" EX1 ")"
+
+	[ We want to allow the execution of RegExp to allow for more possibilities ]
+
+	| REGEXP
+
+	[ This section is responsible for compile-time errors, once an error was found ]
+	[ this directive can be used to exit the compile process throwing an error in the process ]
+
+	| ("!" | ".ERROR") $ "(" $ .STRING -> ("ERR" *) ")" 
+
+	[ This section is responsible for compiler warnings, so compile-time errors can be brought up. ]
+	[ It will not exit the compiler unlike the ERROR directive but will output a warning ]
+
+	| ("?" | ".WARN") $ "(" $ .STRING -> ("WARN" *) ")"
+
+	[ This will set the branch flag to `true`, basically meaning that it will always continue ]
+	[ This might be useful if you want to match nothing or just continue because of something else ]
+	[ $ is a shorthand for ".EMPTY" ]
+
+    | ("$" | ".EMPTY") .LABEL *1 EX3 -> ("BT " *1) -> ("SET");
+
+EX2 = (EX3 -> ("BF " *1) | OUTPUT) $ (EX3 -> ("BE") | OUTPUT) .LABEL *1;
+
+EX1 = EX2 $ ("|" -> ("BT " *1) EX2 | COMMENT) .LABEL *1;
+
+REGEXP = "/" .NOT "/" -> ("REGEXP" *) "/";
+
+DEFINITION = .ID .LABEL * "=" EX1 (";" | !("Expected to see semicolon after each line.")) -> ("R");
+
+[ This defines how comments should look - like this 😉 ]
+[ We start by matching an open bracket and continue matching anything BUT a closing bracket ]
+[ Then we need to match the closing bracket since the matcher has stopped once it reached it ]
+
+COMMENT = "[" ~ "]" "]";
+
+.END

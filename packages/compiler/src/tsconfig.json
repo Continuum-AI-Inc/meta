@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declarationDir": "../typings/",
+		"declaration": true,
+		"declarationMap": true,
+		"target": "ES3",
+		"module": "ES2022",
+		"moduleDetection": "auto",
+		"outDir": "../lib/",
+		"removeComments": true,
+		"moduleResolution": "node"
+	},
+	"compileOnSave": true
+}

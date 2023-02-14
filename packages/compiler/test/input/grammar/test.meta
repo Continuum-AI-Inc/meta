@@ -1,0 +1,23 @@
+.SYNTAX PROGRAM
+
+PROGRAM = AS $AS
+
+[ Expression ]
+
+AS = .ID -> ('ADR ' *) ':=' EX1 -> ('STO') ';';
+EX1 = EX2 $('+' EX2 -> ('ADD') |
+            '-' EX2 -> ('SUB') );
+
+EXP = EX2 $("+" EX2 -> ("ADD")
+	| "-" EX2 -> ("SUB") );
+EX2 = EX3 $("*" EX3 -> ("MUL")
+	| "/" EX3 -> ("DIV") );
+EX3 = EX4 $("**" EX3 -> ("POW"));
+EX4 = "+" EX5
+	| "-" EX5 -> ("NEG")
+	| EX5;
+EX5 = .ID  -> ("LDN" *)
+	| .NUMBER -> ("LDC" *)
+	| "(" EX1 ")";
+
+.END

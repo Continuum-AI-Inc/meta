@@ -1,0 +1,99 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Meta",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#double-quoted-string"
+		},
+		{
+			"include": "#single-quoted-string"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#label"
+		},
+		{
+			"include": "#directive"
+		},
+		{
+			"include": "#special-chars"
+		},
+		{
+			"include": "#eol-semicolon"
+		},
+		{
+			"include": "#backreferences"
+		},
+		{
+			"include": "#regexp"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "entity.other.meta",
+					"match": "\\b\\.[A-Z]\\b"
+				}
+			]
+		},
+		"double-quoted-string": {
+			"name": "string.quoted.double.meta",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.meta",
+					"match": "\\\\."
+				}
+			]
+		},
+		"single-quoted-string": {
+			"name": "string.quoted.single.meta",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.meta",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.block.meta",
+			"begin": "\\[",
+			"end": "\\]"
+		},
+		"directive": {
+			"name": "keyword.other.meta",
+			"match": "\\.[A-Z]+"
+		},
+		"special-chars": {
+			"name": "keyword.operator.meta",
+			"match": "(\\$|~|->|\\||=)"
+		},
+		"backreferences": {
+			"name": "keyword.operator.meta",
+			"match": "\\*[0-9]?"
+		},
+		"label": {
+			"name": "variable.other.meta",
+			"match": "[A-Za-z0-9_][A-Za-z0-9_-]*"
+		},
+		"eol-semicolon": {
+			"name": "punctuation.terminator.meta",
+			"match": ";"
+		},
+		"regexp": {
+			"begin": "/",
+			"end": "/",
+			"name": "string.regexp.meta"
+		}
+	},
+	"scopeName": "source.meta"
+}

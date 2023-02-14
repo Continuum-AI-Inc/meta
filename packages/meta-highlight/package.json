@@ -1,0 +1,42 @@
+{
+    "name": "meta-highlight",
+    "displayName": "meta-syntax-highlighting",
+    "description": "A Syntax Highlighting Extension for the C-Meta Compiler Writing Language",
+    "version": "0.0.2",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "meta",
+                "aliases": [
+                    "Meta",
+                    "meta"
+                ],
+                "extensions": [
+                    ".meta",
+                    ".cmeta"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "meta",
+                "scopeName": "source.meta",
+                "path": "./syntaxes/meta.tmLanguage.json"
+            }
+        ]
+    },
+    "license": "MIT",
+    "publisher": "Letsmoe",
+    "author": {
+        "name": "Letsmoe",
+        "email": "letsmoe1404@gmail.com",
+        "url": "https://continuum-ai.de"
+    }
+}
