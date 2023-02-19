@@ -13,6 +13,7 @@ npm i -g @metalang/core @metalang/cli
 
 - [The Compiler](compiler/index.md)
 - [The Debugger](debugger/index.md)
+- [The Testing Library](testing/index.md)
 - [A Command-Line Interface](cli/index.md)
 
 For now we only need the compiler/core and the CLI. Once these two packages are installed we can head to your favorite directory and run the following command.

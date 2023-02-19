@@ -12,6 +12,9 @@
 		},
 		{
 			"path": "packages/testing"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}
