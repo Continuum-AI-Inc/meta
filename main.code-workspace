@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "packages/core"
+		},
+		{
+			"name": "docs",
+			"path": "docs"
+		},
+		{
+			"path": "packages/compiler-cli"
+		},
+		{
+			"path": "packages/testing"
+		}
+	],
+	"settings": {}
+}

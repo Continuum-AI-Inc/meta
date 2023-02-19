@@ -1,17 +1,17 @@
 {
-  "name": "@metalang/debugger",
-  "version": "1.0.0",
-  "type": "module",
-  "types": "./typings/index.d.ts",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@metalang/core": "file:../compiler"
-  }
+	"name": "@metalang/debugger",
+	"version": "1.0.0",
+	"type": "module",
+	"types": "./typings/index.d.ts",
+	"description": "",
+	"main": "lib/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@metalang/core": "file:../core"
+	}
 }

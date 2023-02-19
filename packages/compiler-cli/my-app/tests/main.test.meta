@@ -1,0 +1,24 @@
+%use "main.grammar.meta";
+%debug off;
+%performance off;
+%code {
+
+a = 5;
+b = a * 19;
+c = (a + b) / (-10^2);
+
+}
+
+// Check if the variables are all correctly set.
+// This will only work if the metalang-test can hook
+// into the program.
+// The option to do that is only available if the output
+// is configured to use 'META-LS'.
+%assert c == -1;
+%assert b == 95;
+%assert a == 5;
+
+// Compare the output to the expected output.
+%compare {
+
+}

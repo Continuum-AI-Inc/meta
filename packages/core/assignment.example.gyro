@@ -1,0 +1,18 @@
+var x = 3;
+var y: int32 = 5;
+var z = x + y;
+var z = z / z;
+
+function compile(x: int32) {
+	const h = 4 * 2;
+
+	return h + 2;
+}
+
+compile(z);
+
+function removeString(str: String): String {
+	return str;
+}
+
+removeString("Abc");

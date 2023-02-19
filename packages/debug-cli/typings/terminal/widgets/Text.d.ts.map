@@ -1,0 +1,1 @@
+{"version":3,"file":"Text.d.ts","sourceRoot":"","sources":["../../../src/terminal/widgets/Text.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AAC5C,OAAO,EAAE,eAAe,EAAE,MAAM,uBAAuB,CAAC;AAGxD,cAAM,IAAK,SAAQ,eAAe;IACd,OAAO,EAAE,QAAQ,CAAC,cAAc;gBAAhC,OAAO,EAAE,QAAQ,CAAC,cAAc;IAInD,cAAc;IAUP,QAAQ;CAUf;AAED,OAAO,EAAE,IAAI,EAAE,CAAA"}

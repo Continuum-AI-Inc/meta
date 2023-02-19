@@ -1,0 +1,36 @@
+.SYNTAX PROGRAM
+
+PROGRAM = $ ASSIGNMENT;
+
+ASSIGNMENT = TYPED_DECLARATION $ "=" $ EXP -> ("STO") $ ";";
+
+[ Expression ]
+
+EXP = EX2 $("+" EX2 -> ("ADD")
+	| "-" EX2 -> ("SUB") );
+EX2 = EX3 $("*" EX3 -> ("MUL")
+	| "/" EX3 -> ("DIV") );
+EX3 = EX4 $("**" EX3 -> ("POW"));
+EX4 = "+" EX5
+	| "-" EX5 -> ("NEG")
+	| EX5;
+EX5 = .ID  -> ("LDN" *)
+	| .NUMBER -> ("LDC" *)
+	| "(" EX1 ")";
+
+TYPED_DECLARATION = .ID -> ("ADR" *) $ ((":" $ TYPE) | UNTYPED_DECLARATION);
+
+
+[ Type ]
+[ A type can be just a single word like `string` ]
+[ but it might also be something like an array of string, a fixed-length array ]
+[ or something entirely else, this defines all edge cases ]
+[ Example Types: ]
+[ - i32 -> Int 32 bit ]
+[ - HashMap<&str, i32> -> HashMap with string pointers as indices and 32 bit integers as values. ]
+
+TYPE = (.ID ("<" $ TYPE $ (("," TYPE) | ">"))) -> ("CVT" *);
+
+UNTYPED_DECLARATION = .ID -> ("ADR" *);
+
+.END

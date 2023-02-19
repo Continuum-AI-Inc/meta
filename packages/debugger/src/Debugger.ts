@@ -1,4 +1,4 @@
-import { Scanner, Builder, parse, METALANG, MetaCompiler, Metadata } from "@metalang/core";
+import { MetaCompiler, Metadata } from "@metalang/core";
 import type { Step } from "@metalang/core";
 import { StackTree } from "./StackTree.js";
 import { EventEmitter } from "events";

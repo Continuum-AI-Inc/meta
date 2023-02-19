@@ -1,0 +1,1 @@
+{"version":3,"file":"MouseClient.d.ts","sourceRoot":"","sources":["../../src/terminal/MouseClient.ts"],"names":[],"mappings":";AAQA,OAAO,YAAY,MAAM,QAAQ,CAAC;AAwElC,cAAM,WAAY,SAAQ,YAAY;IACrC,OAAO,CAAC,GAAG,CAAa;;IAwJjB,IAAI;IAOJ,WAAW,CAAC,GAAG,EAAE,MAAM;IAIvB,UAAU,CAAC,GAAG,EAAE,MAAM;IAItB,UAAU,CAAC,GAAG,EAAE,MAAM;CAG7B;AAED,OAAO,EAAE,WAAW,EAAE,CAAC"}

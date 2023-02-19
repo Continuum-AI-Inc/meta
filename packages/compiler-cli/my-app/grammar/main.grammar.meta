@@ -1,0 +1,7 @@
+%include "./math.grammar.meta";
+
+.SYNTAX PROGRAM
+
+PROGRAM = $(AEXP);
+
+.END

@@ -1,0 +1,464 @@
+       ADR  PROGRAM
+PROGRAM
+A0 
+       JMP  VAR_DECLARATION
+       BF  A1 
+A1 
+A2 
+       BT  A0 
+       SET 
+       BF  A3 
+       TST  ".SYNTAX"
+       BE 
+       ID 
+       BE 
+       CL  "ADR "
+       CI 
+       OUT 
+A4 
+       JMP  DEFINITION
+       BF  A5 
+A5 
+       BT  A6 
+       JMP  COMMENT
+       BF  A7 
+A7 
+A6 
+       BT  A4 
+       SET 
+       BE 
+       TST  ".END"
+       BE 
+       CL  "END"
+       OUT 
+A3 
+A8 
+       R 
+OUT1
+       TST  "*1"
+       BF  A9 
+       CL  "GN1"
+       OUT 
+A9 
+       BT  A10 
+       TST  "*2"
+       BF  A11 
+       CL  "GN2"
+       OUT 
+A11 
+       BT  A10 
+       TST  "*"
+       BF  A12 
+       CL  "CI"
+       OUT 
+A12 
+       BT  A10 
+       TST  "%"
+       BF  A13 
+       CL  "CO"
+       OUT 
+A13 
+       BT  A10 
+       SR 
+       BF  A14 
+       CL  "CL "
+       CI 
+       OUT 
+A14 
+       BT  A10 
+       JMP  VAR_REFERENCE
+       BF  A15 
+       CL  "CV"
+       CI 
+       OUT 
+A15 
+       BT  A10 
+       TST  ":"
+       BF  A16 
+       NUM 
+       BE 
+       CL  "GROUP"
+       CI 
+       OUT 
+A16 
+A10 
+       R 
+OUTPUT
+       TST  "->"
+       BF  A17 
+A18 
+       TST  "("
+       BT  A18 
+       SET 
+       BE 
+A19 
+       JMP  OUT1
+       BT  A19 
+       SET 
+       BE 
+       TST  ")"
+       BE 
+A17 
+       BT  A20 
+       TST  ".LABEL"
+       BF  A21 
+       CL  "LB"
+       OUT 
+       JMP  OUT1
+       BE 
+A21 
+A20 
+       BF  A22 
+       CL  "OUT"
+       OUT 
+A22 
+A23 
+       R 
+EX3
+       ID 
+       BF  A24 
+       CL  "JMP "
+       CI 
+       OUT 
+A24 
+       BT  A25 
+       SR 
+       BF  A26 
+       CL  "TST "
+       CI 
+       OUT 
+A26 
+       BT  A25 
+       TST  ".ID"
+       BF  A27 
+       CL  "ID"
+       OUT 
+A27 
+       BT  A25 
+       TST  ".ROL"
+       BF  A28 
+       CL  "ROL"
+       OUT 
+A28 
+       BT  A25 
+       TST  ".RET"
+       BF  A29 
+       CL  "R"
+       OUT 
+A29 
+       BT  A25 
+       TST  ".NOT"
+       BF  A30 
+       SR 
+       BE 
+       CL  "NOT"
+       CI 
+       OUT 
+A30 
+       BT  A25 
+       TST  ".NUMBER"
+       BF  A31 
+       CL  "NUM"
+       OUT 
+A31 
+       BT  A25 
+       TST  ".STRING"
+       BF  A32 
+       CL  "SR"
+       OUT 
+A32 
+       BT  A25 
+       TST  "("
+       BF  A33 
+       JMP  EX1
+       BE 
+       TST  ")"
+       BE 
+A33 
+       BT  A25 
+       JMP  REGEXP
+       BF  A34 
+A34 
+       BT  A25 
+       TST  "^"
+       BF  A35 
+A36 
+       TST  "("
+       BT  A36 
+       SET 
+       BE 
+A37 
+       SR 
+       BF  A38 
+       CL  "OUTMOV"
+       CI 
+       OUT 
+A38 
+       BT  A39 
+       TST  "*"
+       BF  A40 
+       CL  "CIOUT"
+       OUT 
+A40 
+A39 
+       BT  A37 
+       SET 
+       BE 
+       TST  ")"
+       BE 
+A35 
+       BT  A25 
+       TST  ".PUSH"
+       BF  A41 
+       SET 
+       BE 
+       TST  "("
+       BE 
+       SET 
+       BE 
+       JMP  VAR_REFERENCE
+       BE 
+       SET 
+       BE 
+       TST  ")"
+       BE 
+       CL  "PUSH"
+       OUT 
+A41 
+       BT  A25 
+       TST  ".IN"
+       BF  A42 
+       SET 
+       BE 
+       TST  "("
+       BE 
+       SET 
+       BE 
+       JMP  VAR_REFERENCE
+       BE 
+       SET 
+       BE 
+       TST  ")"
+       BE 
+       CL  "IN"
+       OUT 
+A42 
+       BT  A25 
+       TST  ".ERROR"
+       BF  A43 
+       SET 
+       BE 
+       TST  "("
+       BE 
+       SET 
+       BE 
+       SR 
+       BE 
+       CL  "ERR"
+       CI 
+       OUT 
+       TST  ")"
+       BE 
+A43 
+       BT  A25 
+       TST  ".WARN"
+       BF  A44 
+       SET 
+       BE 
+       TST  "("
+       BE 
+       SET 
+       BE 
+       SR 
+       BE 
+       CL  "WARN"
+       CI 
+       OUT 
+       TST  ")"
+       BE 
+A44 
+       BT  A25 
+       TST  ".EMPTY"
+       BF  A45 
+A45 
+       BT  A46 
+       TST  "~"
+       BF  A47 
+A47 
+A46 
+       BF  A48 
+       CL  "SET"
+       OUT 
+A48 
+       BT  A25 
+       TST  "$"
+       BF  A49 
+       LB 
+       GN1 
+       OUT 
+       JMP  EX3
+       BE 
+       CL  "BT "
+       GN1 
+       OUT 
+       CL  "SET"
+       OUT 
+A49 
+A25 
+       R 
+EX2
+       JMP  EX3
+       BF  A50 
+       CL  "BF "
+       GN1 
+       OUT 
+A50 
+       BT  A51 
+       JMP  OUTPUT
+       BF  A52 
+A52 
+A51 
+       BF  A53 
+A54 
+       JMP  EX3
+       BF  A55 
+       CL  "BE"
+       OUT 
+A55 
+       BT  A56 
+       JMP  OUTPUT
+       BF  A57 
+A57 
+A56 
+       BT  A54 
+       SET 
+       BE 
+       LB 
+       GN1 
+       OUT 
+A53 
+A58 
+       R 
+EX1
+       JMP  EX2
+       BF  A59 
+A60 
+       TST  "|"
+       BF  A61 
+       CL  "BT "
+       GN1 
+       OUT 
+       JMP  EX2
+       BE 
+A61 
+       BT  A62 
+       JMP  COMMENT
+       BF  A63 
+A63 
+A62 
+       BT  A60 
+       SET 
+       BE 
+       LB 
+       GN1 
+       OUT 
+A59 
+A64 
+       R 
+REGEXP
+       TST  "/"
+       BF  A65 
+       NOT "/"
+       BE 
+       CL  "REGEXP"
+       CI 
+       OUT 
+       TST  "/"
+       BE 
+A65 
+A66 
+       R 
+DEFINITION
+       ID 
+       BF  A67 
+       LB 
+       CI 
+       OUT 
+       TST  "="
+       BE 
+       JMP  EX1
+       BE 
+       TST  ";"
+       BF  A68 
+A68 
+       BT  A69 
+       ERR "Expected to see semicolon after each line."
+       BF  A70 
+A70 
+A69 
+       BE 
+       CL  "R"
+       OUT 
+A67 
+A71 
+       R 
+INITIALIZER
+       TST  ".HASHMAP"
+       BF  A72 
+       CL  "INIT"
+       CL  "HASHMAP"
+       OUT 
+A72 
+       BT  A73 
+       TST  ".ARRAY"
+       BF  A74 
+       CL  "INIT"
+       CL  "ARRAY"
+       OUT 
+A74 
+       BT  A73 
+       ERR "Invalid initializer"
+       BF  A75 
+A75 
+A73 
+       R 
+VAR_DECLARATION
+       TST  ":"
+       BF  A76 
+       ID 
+       BE 
+       CL  "VADR"
+       CI 
+       OUT 
+       TST  "="
+       BE 
+       JMP  INITIALIZER
+       BE 
+       TST  ";"
+       BE 
+A76 
+A77 
+       R 
+VAR_REFERENCE
+       TST  ":"
+       BF  A78 
+       ID 
+       BE 
+       CL  "LDV"
+       CI 
+       OUT 
+A78 
+A79 
+       R 
+COMMENT
+       TST  "["
+       BF  A80 
+       NOT "]"
+       BE 
+       TST  "]"
+       BE 
+A80 
+A81 
+       R 
+       END 
+       

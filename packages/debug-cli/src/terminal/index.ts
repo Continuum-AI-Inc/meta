@@ -1,1 +1,1 @@
-export { ReactiveTerminal } from "./ReactiveTerminal.js";
+export { Terminal } from "./ReactiveTerminal.js";

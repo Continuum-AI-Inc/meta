@@ -1,1 +1,0 @@
-type Instruction = [string, string?];

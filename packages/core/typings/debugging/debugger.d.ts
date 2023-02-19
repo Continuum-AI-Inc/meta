@@ -1,0 +1,48 @@
+declare class Debugger {
+    private assembly;
+    private input;
+    private output;
+    private pc;
+    private stack;
+    private nextGN1;
+    private nextGN2;
+    private done;
+    private branch;
+    private program;
+    private breakpoints;
+    private tree;
+    constructor(assembly: string, grammar: string);
+    addBreakpoint(line: number): void;
+    removeBreakpoint(line: number): void;
+    private emitter;
+    on(event: string, callback: (...args: any[]) => void): void;
+    off(event: string, callback: (...args: any[]) => void): void;
+    private emit;
+    step(): void;
+    error(message: string): void;
+    TST(string: string): void;
+    GROUP(num: number): void;
+    REGEXP(string: string): void;
+    ID(): void;
+    NUM(): void;
+    ROL(): void;
+    NOT(exclude: string): void;
+    SR(): void;
+    JMP(aaa: string): void;
+    R(): void;
+    SET(): void;
+    B(aaa: any): void;
+    BT(aaa: string): void;
+    BF(aaa: string): void;
+    BE(): void;
+    CL(string: string): void;
+    CI(): void;
+    GN1(): void;
+    GN2(): void;
+    LB(): void;
+    OUT(): void;
+    ADR(ident: string): void;
+    END(): void;
+}
+export { Debugger };
+//# sourceMappingURL=debugger.d.ts.map

@@ -1,0 +1,38 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "moritz"
+      },
+      "creation_time": "2023-02-16T08:43:02.443Z",
+      "id": "2",
+      "references": [],
+      "title": "Implement Color Support using chalk"
+    },
+    {
+      "assignedTo": {
+        "name": "moritz"
+      },
+      "creation_time": "2023-02-16T08:42:13.984Z",
+      "description": {
+        "content": "The text input is not working at the moment.\nThe content is not being removed properly.\n",
+        "mime": "text/markdown"
+      },
+      "id": "1",
+      "references": [],
+      "title": "TextInput.ts"
+    },
+    {
+      "assignedTo": {
+        "name": "moritz"
+      },
+      "creation_time": "2023-02-16T08:43:22.417Z",
+      "id": "3",
+      "references": [],
+      "title": "Add Vim style commands to the Debugger."
+    }
+  ],
+  "in-progress": [],
+  "testing": [],
+  "done": []
+}

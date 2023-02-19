@@ -1,0 +1,1 @@
+{"version":3,"file":"DamageBuffer.d.ts","sourceRoot":"","sources":["../../src/terminal/DamageBuffer.ts"],"names":[],"mappings":"AAOA,cAAM,YAAY;IACjB,OAAO,CAAC,MAAM,CAAqB;IAE5B,KAAK;IAKL,GAAG,CAAC,OAAO,EAAE,MAAM,EAAE,CAAC,EAAE,MAAM,EAAE,CAAC,EAAE,MAAM;IAQzC,YAAY;CAenB;AAED,OAAO,EAAE,YAAY,EAAE,CAAA"}
